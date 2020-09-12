@@ -305,6 +305,9 @@ namespace WinApi.User32
         [DllImport(LibraryName, CharSet = Properties.BuildCharSet)]
         public static extern uint MapVirtualKeyEx(VirtualKey uCode, VirtualKeyMapType uMapType, IntPtr dwhkl);
 
+        [DllImport(LibraryName, CharSet = Properties.BuildCharSet)]
+        public static extern ushort VkKeyScan(char key);
+
         [DllImport(LibraryName, ExactSpelling = true)]
         public static extern KeyState GetAsyncKeyState(int vKey);
 
@@ -481,6 +484,11 @@ namespace WinApi.User32
 
         [DllImport(LibraryName, ExactSpelling = true)]
         public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
+        [DllImport(LibraryName)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
 
         [DllImport(LibraryName, CharSet = Properties.BuildCharSet)]
         public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass,
